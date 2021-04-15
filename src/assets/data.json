@@ -1,0 +1,304 @@
+
+
+[
+  {
+    "id": 1,
+    "titre": "Gravée",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "peinte",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite chat"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "titre": "huilé",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite lion"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "titre": "Motif géométrique",
+        "produits": [
+          {
+            "id": 1,
+            "title":"boite lion",
+            "price_ttc":"51,90",
+            "price_ht":"41,52",
+            "taxe":"10,38",
+            "essence_wood":"chêne",
+            "finition":"huile de lin",
+            "hinge_type":"classic",
+            "close_type":"classic",
+            "category_id":1,
+            "sub_category":1,
+            "color":"brown",
+            "created_at":"2020-10-10 00:00",
+            "heigth":10,
+            "widht":20,
+            "length":5
+          },
+          {
+            "id": 2,
+            "titre": "boite elephant"
+          },
+          {
+            "id": 3,
+            "titre": "boite bouteille"
+          },
+          {
+            "id": 4,
+            "titre": "boite ordi"
+          },
+          {
+            "id": 5,
+            "titre": "boite sourie"
+          },
+          {
+            "id": 6,
+            "titre": "boite banane"
+          },
+          {
+            "id": 7,
+            "titre": "boite lion"
+          },
+          {
+            "id": 8,
+            "titre": "boite girafe"
+          },
+          {
+            "id": 9,
+            "titre": "boite chaussure"
+          },
+          {
+            "id": 10,
+            "titre": "boite table"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "titre": "Motif non géométrique",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "titre": "dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "titre": "stickers",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "titre": "Maqueterie",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "titre": "Palette",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "titre": "Ouverte",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "titre": "Fermer",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "titre": "Relief",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Huilé",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "titre": "Thé",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "titre": "Café",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Stikers",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "titre": "Crayon",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Stickers",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "titre": "Bijoux",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "titre": "Simple",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "titre": "Style ancien",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "titre": "Coffre",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "titre": "Couture",
+    "sousCategory": [
+      {
+        "id": 1,
+        "titre": "Dessin",
+        "produits": [
+          {
+            "id": 1,
+            "titre": "boite animaux"
+          }
+        ]
+      }
+    ]
+  }
+]
