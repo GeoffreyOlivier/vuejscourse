@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ListProduct from '../views/ListProduct'
+import DetailProduct from "@/views/DetailProduct";
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,12 @@ const routes = [
     name: 'list',
     component: ListProduct
   },
+  {
+    path: 'item',
+    name: 'item-detail',
+    component: DetailProduct
+  },
+
 ]
 
 const router = new VueRouter({

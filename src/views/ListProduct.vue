@@ -1,38 +1,55 @@
 <template>
   <div class="">
-    <flickity ref="flickity" :options="flickityOptions2">
-      <div v-for="item in tab[category]" :key="item.id">
-        <div class="carousel-cell">{{
-            item.titre
-          }}
-        </div>
-        <!--        <div  class="carousel-cell">{{ item.titre }}</div>-->
+    <div class="carousel">
+      <div v-for="item in test" :key="item.id">
+        <div class="cell" v-on:click="selectSubCat(item)">{{ item.titre }}</div>
       </div>
-    </flickity>
+    </div>
+    <div>
+      <div v-if="cat_selected"  class="container">
+        <StackGrid
+            :columnWidth="200"
+            :gutterX="20"
+            :gutterY="20">
+          <div class="stack-item"
+               v-for="(item, index) in cat_selected" :key="index"
+          >
+            <div>
+              <b-card
+                  :title="item.titre"
+                  img-src="https://picsum.photos/600/300/?image=25"
+                  img-alt="Image"
+                  img-top
+                  tag="article"
+                  style="max-width: 20rem;"
+                  class="mb-2"
+              >
+                <router-link class="btn btn-primary" :to="{ name: 'item-detail', params: { id: item }}"></router-link>
+              </b-card>
+            </div>
+          </div>
+        </StackGrid>
+      </div>
+    </div>
   </div>
 </template>
-<style scoped>
-.carousel-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  background-color: #c4dcf6;
-}
-</style>
+
 <script>
-import Flickity from 'vue-flickity';
 import json from './../assets/data.json'
+import StackGrid from 'vue-stack-grid-component'
+
 export default {
   components: {
-    Flickity
+    StackGrid
   },
   data() {
     return {
       tab: json,
       category: 0,
       sousCat: [],
+      test: '',
+      cat_selected: '',
+      souscatjson: '',
       flickityOptions2: {
         cellAlign: 'center',
         contain: true,
@@ -46,28 +63,51 @@ export default {
     }
   },
   created() {
-    this.category = parseInt(this.$route.params.item)
-
     console.log("pass")
-    // this.getSousCat()
+    this.getSousCat()
+    console.log(this.cat_selected)
   },
-  // methods: {
-  //   getSousCat() {
-  //     console.log(this.category)
-  //     this.category = parseInt(this.$route.params.item)
-  //     this.sousCat = this.tab.find(e => e.id === this.category).sousCategory;
-  //     console.log(this.tab)
-  //     console.log(this.sousCat[0])
-  //   },
-  // },
+  updated() {
+  },
+  methods: {
+    getSousCat() {
+      console.log(this.category)
+
+
+      this.category = parseInt(this.$route.params.item)
+      this.sousCat = this.tab.filter(e => e.id === this.category);
+
+
+      this.test = this.sousCat[0].sousCategory
+
+      console.log(typeof 'sousCat');
+    },
+    selectSubCat(v){
+      console.log(v.produits)
+      this.cat_selected = v.produits;
+    },
+  },
   watch: {
     '$route.path': function(){
+      console.log(this.cat_selected)
+
+      // this.test = ''
       // console.log(this.$route.params)
       this.category = parseInt(this.$route.params.item)
       // this.sousCat = json.category.find(e => e.id === this.category).sousCategory;
-      // this.getSousCat()
+      this.getSousCat()
 
     }
   }
 }
 </script>
+<style scoped>
+.carousel {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+.cell{
+  margin: 20px 30px;
+}
+</style>
