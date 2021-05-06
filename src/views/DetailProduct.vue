@@ -7,7 +7,7 @@
     <div class="information">
       <div>
         <div>{{ product.titre }}</div>
-        <div>{{ product.stars }}</div>
+        <div>{{ product.stars }} stars</div>
       </div>
       <div>
         <div>{{ product.prix }} €</div>

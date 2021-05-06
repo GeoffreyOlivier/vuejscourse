@@ -3,8 +3,7 @@
     <b-navbar toggleable="lg"  class="navbar navbar-custom">
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">MyAccount</b-nav-item>
-          <b-nav-item href="#">Contact</b-nav-item>
+          <router-link class="btn btn-custom" :to="{ name: 'register'}">Register</router-link>
         </b-navbar-nav>
       </b-collapse>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

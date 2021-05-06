@@ -32,6 +32,11 @@ class CategorieService {
         return response.data
     }
 
+    async Register(v) {
+        let response = await this.axios.post('/register/', v)
+        return response.data
+    }
+
 }
 
 export default new CategorieService()
