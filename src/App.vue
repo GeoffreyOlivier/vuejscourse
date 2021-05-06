@@ -43,6 +43,9 @@ export default {
   data () {
     return{
     }
+  },
+  created() {
+    alert("le site à été fait seulement en mobile, svp mettre en simulation de smartphone")
   }
 }
 </script>

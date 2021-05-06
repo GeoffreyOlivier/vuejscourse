@@ -24,7 +24,7 @@
 export default {
   methods: {
     test(){
-      console.log("okkkk")
+      alert("modal était en cours mais pas terminé")
     }
   }
 }

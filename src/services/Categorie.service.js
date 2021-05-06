@@ -26,6 +26,12 @@ class CategorieService {
         let response = await this.axios.get('/product/' + id)
         return response.data
     }
+
+    async addProduct(id) {
+        let response = await this.axios.post('/product/' + id)
+        return response.data
+    }
+
 }
 
 export default new CategorieService()

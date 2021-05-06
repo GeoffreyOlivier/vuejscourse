@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="back" >
+    <div class="back">
       <a @click="$router.go(-1)"> &lt; back</a>
     </div>
     <img :src="product.image" alt="">
@@ -11,16 +11,13 @@
       </div>
       <div>
         <div>{{ product.prix }} €</div>
-        <router-link class="btn-custom" :to="{ name: '', params: { id: product.id }}">
+        <b-btn class="btn-custom" @click="addProduct(product.id)">
           Ajouter au panier
-        </router-link>
+        </b-btn>
       </div>
     </div>
     <div class="description">
-      <p>m Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book. It has survived not only five centuries, but also the
-        leap into electronic typesetting, remaining essentiall</p>
+      <p>{{product.description}}</p>
     </div>
   </div>
 </template>
@@ -43,10 +40,19 @@ export default {
           .then((response) => {
             console.log(response)
             this.product = response[0]
-            console.log(this.product)
           })
           .catch((error) => {
-            this.loading = false
+            console.log(error)
+            console.log(error.response)
+          })
+    },
+    addProduct(v) {
+      CategorieService.addProduct(v)
+          .then((response) => {
+            console.log(response)
+            alert("produit ajouter au panier")
+          })
+          .catch((error) => {
             console.log(error)
             console.log(error.response)
           })
@@ -68,7 +74,8 @@ img {
   background: #ab4c09;
   color: white;
 }
-.information{
+
+.information {
   display: flex;
   justify-content: space-around;
   align-content: space-between;
@@ -77,7 +84,8 @@ img {
   font-size: large;
   font-weight: bolder;
 }
-.back{
+
+.back {
   font-weight: bold;
   font-size: large;
   text-align: left;
