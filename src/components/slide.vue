@@ -1,8 +1,10 @@
 <template>
   <div class="carousel">
-    <div v-for="item in category" :key="item.id">
-      <router-link  class="cell" :to="{name: 'list', params: { item : item.id }}">{{ item.titre }}</router-link>
-    </div>
+      <router-link
+          v-for="item in category" :key="item.id"
+          :class="[{ 'active': activeIndex === item.id}, 'cell']"
+          @click="setActive(item.id)" :to="{name: 'list', params: { item : item.id }}">{{ item.titre }}
+      </router-link>
   </div>
 </template>
 
@@ -17,6 +19,7 @@ export default {
     return {
       category: '',
       route: '',
+      activeIndex: undefined
     }
   },
   async mounted() {
@@ -37,28 +40,35 @@ export default {
     this.route = this.$route.name
   },
   methods: {
-    tada(v) {
-      console.log(v)
+    setActive(index) {
+      this.activeIndex = index
     },
 
   }
 }
 </script>
 <style scoped>
-.carousel{
+.carousel {
   display: flex;
+  align-items: center;
   flex-direction: row;
   overflow: scroll;
+  height: 45px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px gray;
 }
-.cell{
+
+.cell {
   margin: 20px 30px;
+  color: black;
+  font-family: system-ui;
+  font-size: medium;
+  font-weight: bolder;
 }
-.carousel-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  background-color: #fdc0c0;
+.router-link-active{
+  color: saddlebrown !important;
+  text-decoration: none;
 }
+
+
 </style>

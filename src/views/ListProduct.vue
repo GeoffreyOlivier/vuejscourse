@@ -1,42 +1,49 @@
 <template>
   <div class="">
     <div class="carousel">
-      <div v-for="item in test" :key="item.id">
-        <div class="cell" v-on:click="selectSubCat(item)">{{ item.titre }}</div>
+      <div v-for="item in sousCat" :key="item.id">
+        <div class="cell" v-on:click="showProduct(item.id)">{{ item.titre }}</div>
       </div>
     </div>
     <div>
-      <div v-if="cat_selected"  class="container">
-        <StackGrid
-            :columnWidth="200"
-            :gutterX="20"
-            :gutterY="20">
-          <div class="stack-item"
-               v-for="(item, index) in cat_selected" :key="index"
-          >
-            <div>
-              <b-card
-                  :title="item.titre"
-                  img-src="https://picsum.photos/600/300/?image=25"
-                  img-alt="Image"
-                  img-top
-                  tag="article"
-                  style="max-width: 20rem;"
-                  class="mb-2"
-              >
-                <router-link class="btn btn-primary" :to="{ name: 'item-detail', params: { id: item }}"></router-link>
-              </b-card>
+      <div class="container" v-if="products.length > 0 && notif === false">
+          <StackGrid
+              :columnWidth="200"
+              :gutterX="10"
+              :gutterY="10">
+            <div class="stack-item"
+                 v-for="(product, index) in products" :key="index"
+            >
+              <div class="card-custom">
+                <img :src="product.image" alt="box">
+                <div class="information-card">
+                  <div>{{product.titre}}</div>
+                  <div>{{product.stars}} stars</div>
+                </div>
+                <div class="price">{{product.prix}}€</div>
+                <router-link class="btn btn-custom" :to="{ name: 'item-detail', params: { id: product.id }}">Détails</router-link>
+
+              </div>
             </div>
-          </div>
-        </StackGrid>
+          </StackGrid>
+        </div>
+      <div v-if="notif === true" class="notification">
+        Veuillez choisir une sous catégorie
       </div>
+      <div v-if="products.length < 1 && notif === false" class="notification">
+        Aucun produit
+      </div>
+
     </div>
+
   </div>
+
 </template>
 
 <script>
-import json from './../assets/data.json'
 import StackGrid from 'vue-stack-grid-component'
+import CategorieService from '../services/Categorie.service'
+
 
 export default {
   components: {
@@ -44,70 +51,111 @@ export default {
   },
   data() {
     return {
-      tab: json,
       category: 0,
       sousCat: [],
       test: '',
       cat_selected: '',
       souscatjson: '',
-      flickityOptions2: {
-        cellAlign: 'center',
-        contain: true,
-        draggable: true,
-        freeScroll: true,
-        friction: 0.2,
-        initialIndex: 0,
-        prevNextButtons: false,
-        pageDots: false,
-      }
+      products: [],
+      notif: false,
     }
   },
   created() {
     console.log("pass")
-    this.getSousCat()
-    console.log(this.cat_selected)
+    console.log(this.products)
+    this.getSousCat(1)
   },
   updated() {
   },
   methods: {
-    getSousCat() {
-      console.log(this.category)
-
-
-      this.category = parseInt(this.$route.params.item)
-      this.sousCat = this.tab.filter(e => e.id === this.category);
-
-
-      this.test = this.sousCat[0].sousCategory
-
-      console.log(typeof 'sousCat');
+    getSousCat(v) {
+      console.log("function")
+      CategorieService.getSubCategorieById(v)
+          .then((response) => {
+            console.log(response)
+            this.sousCat = response
+            console.log(this.sousCat)
+          })
+          .catch((error) => {
+            this.loading = false
+            console.log(error)
+            console.log(error.response)
+          })
     },
-    selectSubCat(v){
-      console.log(v.produits)
-      this.cat_selected = v.produits;
+    showProduct(v) {
+      this.notif = false
+      CategorieService.getProducts(v)
+          .then((response) => {
+            console.log(response)
+            this.products = response
+            console.log(this.products)
+          })
+          .catch((error) => {
+            this.loading = false
+            console.log(error)
+            console.log(error.response)
+          })
     },
   },
   watch: {
-    '$route.path': function(){
-      console.log(this.cat_selected)
-
-      // this.test = ''
-      // console.log(this.$route.params)
-      this.category = parseInt(this.$route.params.item)
-      // this.sousCat = json.category.find(e => e.id === this.category).sousCategory;
-      this.getSousCat()
-
+    '$route.path': function () {
+      if (this.$route.params.item) {
+        this.getSousCat(this.$route.params.item)
+        this.notif = true
+      }
+    },
+    cat_selected() {
+      console.log("watch")
     }
   }
 }
 </script>
 <style scoped>
-.carousel {
+.carousel{
   display: flex;
+  align-items: center;
   flex-direction: row;
   overflow: scroll;
+  height: 45px;
+  margin-bottom: 20px;
 }
-.cell{
+
+.cell {
   margin: 20px 30px;
+  color: black;
+  font-family: system-ui;
+  font-size: medium;
+  font-weight: bolder;
+}
+.notification{
+  margin: 50px 0;
+  font-family: system-ui;
+  font-size: x-large;
+  font-weight: bolder;
+}
+.active{
+  color: red !important;
+}
+.card-custom{
+  background: #e3e3e3;
+  padding: 20px 20px;
+}
+.information-card{
+  padding: 5px 0;
+  font-weight: bolder;
+  font-family: system-ui;
+  text-align: left;
+}
+.stars{
+  text-align: end;
+}
+.price{
+  text-align: end;
+}
+.btn-custom{
+  margin: 20px 0 0 0;
+  border-radius: 5px;
+  background: #ab4c09;
+  color: white;
 }
 </style>
